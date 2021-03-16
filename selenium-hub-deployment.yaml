@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: selenium-hub
+  template:
+    metadata:
+      labels:
+        component: selenium-hub
+    spec:
+      containers:
+      - name: selenium-hub
+        image: selenium/hub:3.4.0
+        resources:
+          limits:
+            memory: "1000Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4444
